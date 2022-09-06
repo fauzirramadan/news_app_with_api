@@ -29,17 +29,21 @@ class _DetailBeritaState extends State<DetailBerita> {
               child: Card(
                   child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Image.network(imageUrl + "${widget.data?.gambarBerita}"),
+                child: Hero(
+                    tag: "$imageUrl${widget.data?.gambarBerita}",
+                    child:
+                        Image.network("$imageUrl${widget.data?.gambarBerita}")),
               )),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
                 "${widget.data?.judul}",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(

@@ -52,6 +52,7 @@ class _NestedJsonState extends State<NestedJson> {
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
+              physics: const BouncingScrollPhysics(),
               itemCount: listUser.length,
               itemBuilder: (context, index) {
                 return Card(

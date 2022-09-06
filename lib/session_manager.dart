@@ -25,6 +25,7 @@ class SessionManager {
     return value;
   }
 
+  // Clear Session
   Future<void> clearSession(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.clear();

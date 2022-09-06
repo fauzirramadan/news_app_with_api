@@ -20,13 +20,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   GlobalKey<FormState> keyForm = GlobalKey<FormState>();
+
   Future<ResRegister?> registerUser() async {
     try {
       setState(() {
         isLoading = true;
       });
       http.Response res =
-          await http.post(Uri.parse(baseUrl + "/register.php"), body: {
+          await http.post(Uri.parse("$baseUrl/register.php"), body: {
         'username': username.text,
         'fullname': fullname.text,
         'email': email.text,
@@ -73,10 +74,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             key: keyForm,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 55,
                   child: Icon(
                     Icons.person,
@@ -101,7 +102,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 TextFormField(
@@ -136,7 +137,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 TextFormField(
@@ -156,7 +157,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 isLoading

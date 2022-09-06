@@ -1,14 +1,10 @@
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_day3/api.dart';
 import 'package:flutter_day3/main.dart';
 import 'package:flutter_day3/register_screen.dart';
 import 'package:flutter_day3/res_login.dart';
-import 'package:flutter_day3/res_register.dart';
 import 'package:flutter_day3/session_manager.dart';
 import 'package:http/http.dart' as http;
-import 'main.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -28,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         isLoading = true;
       });
-      http.Response res = await http.post(Uri.parse(baseUrl + "/login.php"),
+      http.Response res = await http.post(Uri.parse("$baseUrl/login.php"),
           body: {'username': username.text, 'password': password.text});
       ResLogin data = resLoginFromJson(res.body);
       if (data.value == 1) {
@@ -42,12 +38,18 @@ class _LoginScreenState extends State<LoginScreen> {
               (route) => false);
         });
       } else if (data.value == 0) {
-        isLoading = false;
+        setState(() {
+          isLoading = false;
+        });
+
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(data.message ?? "")));
       }
     } catch (e) {
-      isLoading = false;
+      setState(() {
+        isLoading = false;
+      });
+
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(e.toString())));
     }
@@ -63,10 +65,10 @@ class _LoginScreenState extends State<LoginScreen> {
             key: keyForm,
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 55,
                   child: Icon(
                     Icons.login_sharp,
@@ -76,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 const SizedBox(
                   height: 15,
                 ),
-                Text("Login dulu yuk",
+                const Text("Login dulu yuk",
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
                 const SizedBox(
@@ -97,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 TextFormField(
@@ -117,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 isLoading
@@ -142,13 +144,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 InkWell(
                   onTap: (() {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => RegisterScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (_) => const RegisterScreen()));
                   }),
                   child: const Text(
                     "anda belum punya akun? silahkan register",

@@ -22,7 +22,7 @@ class _NewsPageState extends State<NewsPage> {
       setState(() {
         isLoading = true;
       });
-      http.Response res = await http.get(Uri.parse(baseUrl + "/getBerita.php"));
+      http.Response res = await http.get(Uri.parse("$baseUrl/getBerita.php"));
       List<Datum>? data = resGetBeritaFromJson(res.body).data;
       setState(() {
         isLoading = false;
@@ -54,7 +54,7 @@ class _NewsPageState extends State<NewsPage> {
             Container(
               padding: const EdgeInsets.all(10),
               alignment: Alignment.topLeft,
-              child: Text(
+              child: const Text(
                 "Popular",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
@@ -72,7 +72,7 @@ class _NewsPageState extends State<NewsPage> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.network(
-                            imageUrl + "${e.gambarBerita}",
+                            "$imageUrl${e.gambarBerita}",
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -95,25 +95,26 @@ class _NewsPageState extends State<NewsPage> {
                 }).toList(),
                 options: CarouselOptions(
                     height: 200, autoPlay: true, enlargeCenterPage: true)),
-            Text(
+            const Text(
               "News Update",
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Expanded(
               child: Container(
                 decoration: BoxDecoration(
                     color: Colors.blueGrey.withOpacity(0.5),
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(18),
                         topRight: Radius.circular(18))),
                 padding: const EdgeInsets.all(10),
                 child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
                     itemCount: listBerita.length,
                     itemBuilder: (context, index) {
                       Datum data = listBerita[index];
@@ -127,10 +128,13 @@ class _NewsPageState extends State<NewsPage> {
                                 MaterialPageRoute(
                                     builder: (_) => DetailBerita(data)));
                           },
-                          leading: Image.network(
-                            imageUrl + "${data.gambarBerita}",
-                            fit: BoxFit.fitWidth,
-                            width: 100,
+                          leading: Hero(
+                            tag: "$imageUrl${data.gambarBerita}",
+                            child: Image.network(
+                              "$imageUrl${data.gambarBerita}",
+                              fit: BoxFit.fitWidth,
+                              width: 100,
+                            ),
                           ),
                           title: Text(
                             data.judul ?? "",
