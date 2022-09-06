@@ -1,4 +1,4 @@
-# flutter_day3
+# News App with API
 
 A new Flutter project.
 
