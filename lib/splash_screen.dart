@@ -53,10 +53,10 @@ class _SplashScreenState extends State<SplashScreen> {
               "images/splash.jpg",
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
-          Center(
+          const Center(
             child: Text(
               "Welcome to My Portal News",
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

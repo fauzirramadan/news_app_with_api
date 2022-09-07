@@ -30,9 +30,8 @@ class _DetailBeritaState extends State<DetailBerita> {
                   child: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
                 child: Hero(
-                    tag: "$imageUrl${widget.data?.gambarBerita}",
-                    child:
-                        Image.network("$imageUrl${widget.data?.gambarBerita}")),
+                    tag: "$imageUrl${widget.data?.foto}",
+                    child: Image.network("$imageUrl${widget.data?.foto}")),
               )),
             ),
             Padding(
@@ -49,7 +48,7 @@ class _DetailBeritaState extends State<DetailBerita> {
             Padding(
               padding: const EdgeInsets.all(10),
               child: Text(
-                "${widget.data?.isiBerita}",
+                "${widget.data?.isi}",
                 textAlign: TextAlign.justify,
               ),
             )

@@ -72,7 +72,7 @@ class _NewsPageState extends State<NewsPage> {
                         ClipRRect(
                           borderRadius: BorderRadius.circular(10),
                           child: Image.network(
-                            "$imageUrl${e.gambarBerita}",
+                            "$imageUrl${e.foto}",
                             fit: BoxFit.fitWidth,
                           ),
                         ),
@@ -129,9 +129,9 @@ class _NewsPageState extends State<NewsPage> {
                                     builder: (_) => DetailBerita(data)));
                           },
                           leading: Hero(
-                            tag: "$imageUrl${data.gambarBerita}",
+                            tag: "$imageUrl${data.foto}",
                             child: Image.network(
-                              "$imageUrl${data.gambarBerita}",
+                              "$imageUrl${data.foto}",
                               fit: BoxFit.fitWidth,
                               width: 100,
                             ),

@@ -39,35 +39,34 @@ class ResGetBerita {
 
 class Datum {
   Datum({
-    this.id,
+    this.idBerita,
     this.judul,
-    this.isiBerita,
-    this.gambarBerita,
+    this.isi,
+    this.foto,
     this.tglBerita,
   });
 
-  String? id;
+  String? idBerita;
   String? judul;
-  String? isiBerita;
-  String? gambarBerita;
+  String? isi;
+  String? foto;
   DateTime? tglBerita;
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["id"] == null ? null : json["id"],
+        idBerita: json["id_berita"] == null ? null : json["id_berita"],
         judul: json["judul"] == null ? null : json["judul"],
-        isiBerita: json["isi_berita"] == null ? null : json["isi_berita"],
-        gambarBerita:
-            json["gambar_berita"] == null ? null : json["gambar_berita"],
+        isi: json["isi"] == null ? null : json["isi"],
+        foto: json["foto"] == null ? null : json["foto"],
         tglBerita: json["tgl_berita"] == null
             ? null
             : DateTime.parse(json["tgl_berita"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
+        "id_berita": idBerita == null ? null : idBerita,
         "judul": judul == null ? null : judul,
-        "isi_berita": isiBerita == null ? null : isiBerita,
-        "gambar_berita": gambarBerita == null ? null : gambarBerita,
+        "isi": isi == null ? null : isi,
+        "foto": foto == null ? null : foto,
         "tgl_berita": tglBerita == null ? null : tglBerita!.toIso8601String(),
       };
 }
